@@ -66,7 +66,6 @@ for (const button of buttons) {
             display.innerHTML = 0;
             runningTotal = 0;
             state = "clear";
-            console.log(`displayValue is ${displayValue}, runningTotal is ${runningTotal}, state is ${state}, operator is ${operator}`);
         } else if (buttonID == "total" && state != "needDigit") {
             displayValue = display.innerHTML
             display.innerHTML = operate(runningTotal, displayValue, operator);
@@ -74,14 +73,12 @@ for (const button of buttons) {
             displayValue = runningTotal;
             state = "freeInput";
             operator = "";
-            console.log(`displayValue is ${displayValue}, runningTotal is ${runningTotal}, state is ${state}, operator is ${operator}`);
         } else if (operators.includes(buttonID)) {
             if (state != "needDigit") {
                 if (operator == "") {
                     runningTotal = display.innerHTML;
                     operator = buttonID;
                     state = "needDigit";
-                    console.log(`displayValue is ${displayValue}, runningTotal is ${runningTotal}, state is ${state}, operator is ${operator}`);
                 } else {
                     displayValue = display.innerHTML
                     display.innerHTML = operate(runningTotal, displayValue, operator);
@@ -89,7 +86,6 @@ for (const button of buttons) {
                     displayValue = runningTotal;
                     operator = buttonID;
                     state = "needDigit";
-                    console.log(`displayValue is ${displayValue}, runningTotal is ${runningTotal}, state is ${state}, operator is ${operator}`);
                 }
             }
         } else if (digits.includes(buttonID)) {
@@ -99,14 +95,10 @@ for (const button of buttons) {
                 displayValue = display.innerHTML
                 display.innerHTML = parseInt(buttonID);
                 state = "freeInput";
-                console.log(`displayValue is ${displayValue}, runningTotal is ${runningTotal}, state is ${state}, operator is ${operator}`);
             } else if (state == "freeInput") {
                 displayValue = display.innerHTML
                 addDigitToDisplay(parseInt(buttonID));
-                console.log(`displayValue is ${displayValue}, runningTotal is ${runningTotal}, state is ${state}, operator is ${operator}`);
             }
         }
     }, false);
 }
-
-// Longer sequences of buttons are not working correctly
